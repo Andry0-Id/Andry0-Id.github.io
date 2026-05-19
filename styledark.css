@@ -1,11 +1,18 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: "RecMonoLinear Nerd Font";
+    font-family: "Cantarell";
 }
 
 body{
-    background: linear-gradient(#113d6a,#1b60a5,#808080); /* light: #f38f76 */
+    background: #596876;
+}
+
+h1{
+    font-size: 2.3em;
+}
+h4{
+    font-size: 1.4em;
 }
 
 h1,h4{
@@ -17,7 +24,7 @@ body .title{
     text-align: center;
 }
 
-.myprofile{
+.myprofile {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -25,10 +32,10 @@ body .title{
     margin: 25px;
     padding: 110px;
     background-image: url(./w-dark.png);
-    background-origin: border-box;
     background-repeat: no-repeat;
+    background-size: cover;
+    background-origin: padding-box;
     border-radius: 20px;
-    box-shadow: 4px 4px 2px 1px #113d6a;
 }
 
 .about-profile{
@@ -39,7 +46,7 @@ body .title{
     text-decoration: none;
     margin: 10px 0;
     padding: 15px;
-    font-size: 0.9em;
+    font-size: 1em;
     font-weight: bolder;
     width: 80px;
     background-color: #fff;
@@ -80,7 +87,7 @@ body .title{
 }
 
 h3{
-    font-size: 0.9em;
+    font-size: 1em;
 }
 
 .card p{
