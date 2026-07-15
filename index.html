@@ -1,19 +1,292 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Andry</title>
-    <link rel="stylesheet" href="styledark.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio | Andry Nirina Andrianarison</title>
+<link rel="stylesheet" href="styledark.css">
 </head>
 <body>
-    <div class="myprofile">
-        <div class="about-profile">
-            <h1>ANDRIANARISON <strong>Andry</strong> Nirina</h1>
-            <h4>Telecommunication and Network Engineer </h4>
-            <a href="#"><button>More</button></a> 
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+    <div class="hero-inner">
+        <h1>Andrianarison <strong>Andry Nirina</strong></h1>
+        <h4>Ingénieur Réseaux &amp; Sécurité — Administration systèmes, SecOps &amp; infrastructures conteneurisées</h4>
+        <div class="hero-cta">
+            <a class="btn btn-primary" href="#experience">Voir l'expérience</a>
+            <a class="btn btn-ghost" href="#competences">Compétences techniques</a>
         </div>
-        <img class="img-profile" src="./profile.jpg" alt="" srcset="">
     </div>
+</header>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience">
+    <div class="wrap">
+        <div class="section-head">
+            <span class="tag">01</span>
+            <h2>Expérience professionnelle</h2>
+        </div>
+
+        <div class="log">
+
+            <div class="log-entry current">
+                <div class="log-meta">
+                    <span class="status">En cours</span>
+                    <span>Déc. 2025 — Mai 2026</span>
+                </div>
+                <h3>Administrateur Réseaux et Systèmes</h3>
+                <p class="org">SETEX Madagascar</p>
+                <ul>
+                    <li>Support informatique niveaux 1 et 2 : assistance aux utilisateurs et résolution d'incidents.</li>
+                    <li>Supervision, détection et réponse aux incidents (SecOps) : déploiement et administration du SIEM <strong>Wazuh</strong> pour la centralisation et la corrélation des logs.</li>
+                    <li>Configuration de modules Active Response pour l'atténuation automatique des menaces externes et anomalies internes.</li>
+                    <li>Intégration d'un serveur <strong>Postfix</strong> pour l'alerte et la notification automatisées des incidents critiques.</li>
+                    <li>Administration avancée du pare-feu <strong>WatchGuard</strong> : analyse de paquets, segmentation réseau, optimisation des règles de filtrage.</li>
+                    <li>Mise en conformité <strong>PCI DSS</strong> et analyse des besoins via le référentiel <strong>NIST</strong>.</li>
+                    <li>Linux : audit et sécurisation des accès SSH, déploiement de Firewalld et Fail2ban.</li>
+                    <li>Windows : politiques de sécurité et GPO selon les repères CIS (BitLocker, clés de secours centralisées sur Active Directory).</li>
+                    <li>Automatisation d'infrastructure via des playbooks <strong>Ansible</strong>.</li>
+                    <li>Déploiement de <strong>Portainer</strong> ; migration Docker → Podman pour renforcer la sécurité de l'architecture conteneurisée.</li>
+                    <li>Optimisation IA : amélioration de la précision d'un modèle de transcription parole-texte (ASR).</li>
+                </ul>
+            </div>
+
+            <div class="log-entry">
+                <div class="log-meta"><span>Nov. 2025 — Déc. 2025</span></div>
+                <h3>Junior Infrastructure IT Engineer</h3>
+                <p class="org">RITEC Madagascar</p>
+                <ul>
+                    <li>Support informatique niveaux 1 et 2 : assistance technique et résolution d'incidents.</li>
+                    <li>Gestion, audit et maintien en condition opérationnelle des infrastructures réseau et équipements critiques (liaisons satellites Starlink, routeurs, onduleurs).</li>
+                    <li>Supervision de la sécurité physique et logique via la gestion du parc de caméras IP.</li>
+                </ul>
+            </div>
+
+            <div class="log-entry">
+                <div class="log-meta"><span>Mai 2025 — Oct. 2025</span></div>
+                <h3>Stagiaire SysOps Engineer</h3>
+                <p class="org">RITEC Madagascar</p>
+                <ul>
+                    <li>Déploiement d'environnements virtualisés sous <strong>Proxmox</strong> (Rocky Linux, Debian, Ubuntu) pour héberger des applications métiers (Dolibarr, Zabbix, SIRH, serveurs Web).</li>
+                    <li>Déploiement de <strong>GLPI</strong> et développement de plugins/scripts pour la gestion des actifs et des tickets.</li>
+                    <li>Mise en place de serveurs <strong>PXEBoot</strong> pour le déploiement automatisé de systèmes d'exploitation.</li>
+                    <li>Configuration de <strong>Nagios Core</strong> pour la supervision temps réel des serveurs.</li>
+                    <li>Contribution aux pipelines CI/CD.</li>
+                    <li>Haute disponibilité : répartition de charge via <strong>Keepalived</strong> et <strong>HAProxy</strong>.</li>
+                </ul>
+            </div>
+
+            <div class="log-entry">
+                <div class="log-meta"><span>2023 — 2024</span></div>
+                <h3>Lead</h3>
+                <p class="org">Techzara Antsiranana</p>
+                <ul>
+                    <li>Travail d'équipe et préparation d'ateliers (workshops).</li>
+                    <li>Partage de connaissances dans le domaine des technologies de l'information.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projets">
+    <div class="wrap">
+        <div class="section-head">
+            <span class="tag">02</span>
+            <h2>Projets</h2>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Homelab automatisé</h3>
+                <span class="meta">R&amp;D personnel · Juillet 2025 — en cours</span>
+                <ul>
+                    <li><strong>Matériel :</strong> Dell OptiPlex 3080 Micro (i5-10, 24 Go RAM), routeur Mikrotik hAP ac².</li>
+                    <li>Déploiement et sécurisation d'un hyperviseur <strong>Proxmox VE</strong> (SSH durci, isolation réseau via NAT).</li>
+                    <li>Templates de VM optimisés (Cloud-init, images minimales Rocky Linux et Debian) pour un déploiement rapide.</li>
+                    <li>Lab cybersécurité : Kali Linux en tant qu'attaquant, Metasploit pour l'exploitation de failles.</li>
+                    <li>Instance <strong>Wazuh SIEM</strong> locale pour centraliser les logs des VMs et tester des scénarios de réponse active.</li>
+                    <li>Cluster de conteneurs Podman/Docker géré via Portainer pour héberger des services internes.</li>
+                    <li>Maquette d'un relais de messagerie sécurisé avec Postfix pour l'envoi d'alertes système.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ EDUCATION ============ -->
+<section id="formation">
+    <div class="wrap">
+        <div class="section-head">
+            <span class="tag">03</span>
+            <h2>Formation</h2>
+        </div>
+        <div class="edu-grid">
+            <div class="edu-card">
+                <span class="year">2023 — 2024</span>
+                <h3>Diplôme d'Ingénieur en Télécommunications et Réseaux</h3>
+                <p>École Supérieure Polytechnique d'Antsiranana (ESPA), Madagascar</p>
+                <span class="badge">Major de promotion · Mention Très Bien</span>
+            </div>
+            <div class="edu-card">
+                <span class="year">2022</span>
+                <h3>Licence en Électronique, Informatique et Technologie</h3>
+                <p>École Supérieure Polytechnique d'Antsiranana, Madagascar</p>
+            </div>
+            <div class="edu-card">
+                <span class="year">2018</span>
+                <h3>Baccalauréat, Série C</h3>
+                <p>Lycée Ambohitrimanjaka, Madagascar</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ CERTIFICATIONS ============ -->
+<section id="certifications">
+    <div class="wrap">
+        <div class="section-head">
+            <span class="tag">04</span>
+            <h2>Certifications &amp; formations</h2>
+        </div>
+        <div class="cert-groups">
+            <div>
+                <h4>Sécurité &amp; analyse (Blue Team)</h4>
+                <ul>
+                    <li>Detecting Web Attacks — Let's Defend</li>
+                    <li>Linux for Blue Team — Let's Defend (Janv. 2024)</li>
+                    <li>Introduction to Cryptology — Let's Defend (Juin 2024)</li>
+                    <li>Malware Analysis Fundamentals — Let's Defend (Nov. 2024)</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Systèmes &amp; administration</h4>
+                <ul>
+                    <li>Bash Script Challenge — Let's Defend (Sept. 2024)</li>
+                    <li>Windows Fundamentals — Let's Defend (Août 2025)</li>
+                    <li>Computer Networks and Network Security — IBM (Coursera, Janv. 2025)</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Développement &amp; data / IA</h4>
+                <ul>
+                    <li>Version Control — Meta</li>
+                    <li>Retrieve Data Using Single-Table SQL Queries — Coursera Project Network</li>
+                    <li>Neural Networks and Deep Learning — DeepLearning.AI</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Linguistique</h4>
+                <ul>
+                    <li>DELF B2 — Certificat de maîtrise de la langue française (2024)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="competences">
+    <div class="wrap">
+        <div class="section-head">
+            <span class="tag">05</span>
+            <h2>Compétences techniques</h2>
+        </div>
+        <div class="skills-groups">
+            <div class="skill-row">
+                <span class="label">Systèmes d'exploitation</span>
+                <div class="chips">
+                    <span class="chip">Windows 10/11</span><span class="chip">Windows Server</span>
+                    <span class="chip">Rocky Linux</span><span class="chip">CentOS</span>
+                    <span class="chip">Debian</span><span class="chip">Ubuntu</span>
+                </div>
+            </div>
+            <div class="skill-row">
+                <span class="label">Virtualisation &amp; orchestration</span>
+                <div class="chips">
+                    <span class="chip">Proxmox VE</span><span class="chip">VMware</span>
+                    <span class="chip">VirtualBox</span><span class="chip">Kubernetes (K3s)</span>
+                </div>
+            </div>
+            <div class="skill-row">
+                <span class="label">Conteneurisation</span>
+                <div class="chips">
+                    <span class="chip">Podman</span><span class="chip">Docker</span><span class="chip">Portainer</span>
+                </div>
+            </div>
+            <div class="skill-row">
+                <span class="label">IaC &amp; automatisation</span>
+                <div class="chips">
+                    <span class="chip">Ansible</span><span class="chip">OpenTofu</span><span class="chip">Terraform</span>
+                </div>
+            </div>
+            <div class="skill-row">
+                <span class="label">Sécurité &amp; filtrage</span>
+                <div class="chips">
+                    <span class="chip">WatchGuard</span><span class="chip">Firewalld</span>
+                    <span class="chip">Iptables</span><span class="chip">Pare-feu Windows</span>
+                </div>
+            </div>
+            <div class="skill-row">
+                <span class="label">Supervision &amp; monitoring</span>
+                <div class="chips">
+                    <span class="chip">Wazuh (SIEM)</span><span class="chip">TheHive</span>
+                    <span class="chip">Zabbix</span><span class="chip">PRTG</span>
+                </div>
+            </div>
+            <div class="skill-row">
+                <span class="label">Analyse &amp; audit</span>
+                <div class="chips">
+                    <span class="chip">Wireshark</span><span class="chip">Lynis</span><span class="chip">OpenVAS</span>
+                    <span class="chip">Postman</span><span class="chip">HTTPie</span><span class="chip">Binary Ninja</span><span class="chip">xxd</span>
+                </div>
+            </div>
+            <div class="skill-row">
+                <span class="label">Développement &amp; scripting</span>
+                <div class="chips">
+                    <span class="chip">Python</span><span class="chip">Bash</span><span class="chip">Java</span>
+                    <span class="chip">C</span><span class="chip">PHP</span>
+                </div>
+            </div>
+            <div class="skill-row">
+                <span class="label">Frameworks &amp; IA</span>
+                <div class="chips">
+                    <span class="chip">Spring Boot</span><span class="chip">React</span><span class="chip">PyTorch</span>
+                </div>
+            </div>
+            <div class="skill-row">
+                <span class="label">Bases de données &amp; réseaux</span>
+                <div class="chips">
+                    <span class="chip">MariaDB</span><span class="chip">MySQL</span><span class="chip">Cisco Packet Tracer</span>
+                </div>
+            </div>
+            <div class="skill-row">
+                <span class="label">IAM</span>
+                <div class="chips"><span class="chip">Keycloak</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+    <div class="wrap">
+        <div>
+            <h4>Langues</h4>
+            <p>Français — Courant, maîtrise professionnelle (DELF B2)</p>
+            <p>Anglais — Intermédiaire (B1/B2 à l'écrit, débutant à l'oral)</p>
+        </div>
+        <div>
+            <h4>Centres d'intérêt</h4>
+            <p>Loisirs : randonnée, vélo, jeux vidéo, cuisine, anime</p>
+            <p>Lecture : romans, revues scientifiques, veille technologique</p>
+            <p>Musique : classique, pop</p>
+        </div>
+    </div>
+    <div class="bottom">© 2026 Andrianarison Andry Nirina — Ingénieur Réseaux &amp; Sécurité</div>
+</footer>
+
 </body>
 </html>

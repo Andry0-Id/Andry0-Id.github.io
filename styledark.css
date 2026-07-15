@@ -1,100 +1,491 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: "Cantarell";
+/* ============================================================
+   Portfolio — Andry Nirina ANDRIANARISON
+   Design language: a night-shift SOC dashboard.
+   The uploaded moon photo sets the palette — deep navy sky,
+   warm gold moonlight — and the rest of the page borrows that
+   "night watch / systems monitoring" mood: log-style entries,
+   status dots, monospace timestamps.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root{
+    --navy-deep:  #061422;
+    --navy:       #0d2847;
+    --navy-mid:   #163654;
+    --slate:      #55606e;
+    --paper:      #f6f4ee;
+    --ink:        #101820;
+    --gold:       #f2ce6b;
+    --gold-soft:  #fbe7ac;
+    --line:       rgba(242,206,107,0.25);
+    --overlay-rgb: 6,20,34;
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    color-scheme: dark;
 }
+
+/* ---------- Sunset theme (day) ----------
+   Same variable names, different world: the cool night-watch
+   navy/gold swaps for a dusk terracotta/coral palette lifted
+   from the sunset photo. Every component below is built on
+   these tokens, so nothing else needs to change. */
+html[data-theme="light"]{
+    --navy-deep:  #5c2015;
+    --navy:       #8a3220;
+    --navy-mid:   #a8452c;
+    --slate:      #7d5a4d;
+    --paper:      #fff6ee;
+    --ink:        #241209;
+    --gold:       #ff6b4a;
+    --gold-soft:  #ffceb0;
+    --line:       rgba(255,107,74,0.28);
+    --overlay-rgb: 61,20,10;
+    color-scheme: light;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
 
 body{
-    background: #596876;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.55;
+    transition: background 200ms ease, color 200ms ease;
 }
 
-h1{
-    font-size: 2.3em;
-}
-h4{
-    font-size: 1.4em;
-}
+a{ color: inherit; }
 
-h1,h4{
-    color: #fff;
-    margin: 10px 0;
-}
+.wrap{ max-width: 1040px; margin: 0 auto; padding: 0 32px; }
 
-body .title{
-    text-align: center;
+/* ---------- section headers ---------- */
+.section-head{
+    display:flex;
+    align-items:baseline;
+    gap: 14px;
+    margin: 0 0 32px;
 }
+.section-head .tag{
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--slate);
+    padding: 3px 8px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: #fff;
+}
+.section-head h2{
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--navy-deep);
+}
+section{ padding: 72px 0; }
+section + section{ border-top: 1px solid rgba(16,24,32,0.08); }
 
-.myprofile {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 25px;
-    padding: 110px;
-    background-image: url(./w-dark.png);
+/* ============================================================
+   HERO — moon photo, night sky
+   ============================================================ */
+.hero{
+    position: relative;
+    min-height: 78vh;
+    display:flex;
+    align-items:flex-end;
+    background-image:
+        radial-gradient(1px 1px at 12% 22%, rgba(255,255,255,.9) 50%, transparent 51%),
+        radial-gradient(1px 1px at 28% 12%, rgba(255,255,255,.7) 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 62% 18%, rgba(255,255,255,.8) 50%, transparent 51%),
+        radial-gradient(1px 1px at 80% 30%, rgba(255,255,255,.6) 50%, transparent 51%),
+        radial-gradient(1px 1px at 40% 8%, rgba(255,255,255,.5) 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 92% 14%, rgba(255,255,255,.7) 50%, transparent 51%),
+        url('./w-dark.png');
     background-repeat: no-repeat;
     background-size: cover;
-    background-origin: padding-box;
-    border-radius: 20px;
+    background-position: center;
+    color: #fff;
+    overflow: hidden;
 }
-
-.about-profile{
-    text-align: left;
+.hero::after{
+    /* horizon fade so the text panel reads clearly over the sky */
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(var(--overlay-rgb),0) 40%, rgba(var(--overlay-rgb),0.55) 78%, rgba(var(--overlay-rgb),0.78) 100%);
+    pointer-events:none;
+    transition: background 200ms ease;
 }
-
-.about-profile button{
-    text-decoration: none;
-    margin: 10px 0;
-    padding: 15px;
-    font-size: 1em;
-    font-weight: bolder;
-    width: 80px;
-    background-color: #fff;
-    border: none;
-    color: #113d6a;
-    border-radius: 12px;
-    transition: 100ms ease-in-out;
+/* daytime sky: swap the photo, drop the stars, no dot-pulse needed */
+html[data-theme="light"] .hero{
+    background-image: url('./w-light.png');
 }
-
-.about-profile button:hover{
-    border: none;
+html[data-theme="light"] .eyebrow .dot{
+    animation: none;
+    box-shadow: 0 0 8px 2px rgba(255,107,74,0.5);
 }
-
-.img-profile{
-    width: 30%; 
-    border-radius: 100%;
-    border: 6px solid #fff;
-    /* border-radius: 10px; */
+.hero-inner{
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 48px 32px 56px;
+    max-width: 1040px;
+    margin: 0 auto;
 }
-
-.myproject{
-    display: flex;
+.eyebrow{
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    display:flex;
+    align-items:center;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+.eyebrow .dot{
+    width:7px; height:7px; border-radius:50%;
+    background: var(--gold);
+    box-shadow: 0 0 8px 2px rgba(242,206,107,0.7);
+    animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse{
+    0%,100%{ opacity:1; }
+    50%{ opacity:.35; }
+}
+.hero h1{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    line-height: 1.08;
+    max-width: 14ch;
+}
+.hero h1 strong{ color: var(--gold); font-weight: 700; }
+.hero h4{
+    margin-top: 16px;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 1.08rem;
+    color: rgba(255,255,255,0.82);
+    max-width: 46ch;
+}
+.hero-cta{
+    margin-top: 30px;
+    display:flex;
+    gap: 14px;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    margin: 25px;
 }
+.btn{
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration:none;
+    border: 1px solid transparent;
+    cursor:pointer;
+    transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+    display:inline-block;
+}
+.btn-primary{
+    background: var(--gold);
+    color: var(--navy-deep);
+    font-weight: 500;
+}
+.btn-primary:hover{ transform: translateY(-2px); background: var(--gold-soft); }
+.btn-ghost{
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255,255,255,0.4);
+}
+.btn-ghost:hover{ border-color: var(--gold); color: var(--gold); }
 
-.card{
-    display: flex;
-    justify-content: center;
+/* ============================================================
+   THEME TOGGLE — night watch / sunset
+   ============================================================ */
+.theme-toggle{
+    position: fixed;
+    top: 22px;
+    right: 22px;
+    z-index: 100;
+    width: 64px;
+    height: 34px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.35);
+    background: rgba(6,14,24,0.55);
+    backdrop-filter: blur(6px);
+    cursor: pointer;
+    padding: 3px;
+    display:flex;
+    align-items:center;
+    transition: background 200ms ease, border-color 200ms ease;
+}
+.theme-toggle:hover{ border-color: var(--gold); }
+.theme-toggle:focus-visible{ outline: 2px solid var(--gold); outline-offset: 3px; }
+.theme-toggle .track{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 0 6px;
+}
+.theme-toggle .track svg{
+    width: 14px; height: 14px;
+    position: relative; z-index: 1;
+}
+.theme-toggle .icon-moon svg{ color: #fbe7ac; }
+.theme-toggle .icon-sun svg{ color: #ffe2b0; opacity: 0.6; }
+.theme-toggle .knob{
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(160deg, #fdf3d6, #f2ce6b);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+    transition: transform 220ms cubic-bezier(.4,0,.2,1), background 220ms ease;
+}
+.theme-toggle.is-light .knob{
+    transform: translateX(30px);
+    background: linear-gradient(160deg, #ffd8a8, #ff6b4a);
+}
+.theme-toggle.is-light .icon-moon svg{ opacity: 0.5; }
+.theme-toggle.is-light .icon-sun svg{ opacity: 1; color:#fff2df; }
+
+/* ============================================================
+   EXPERIENCE — read like a systems/uptime log
+   ============================================================ */
+.log{
+    position: relative;
+    padding-left: 28px;
+}
+.log::before{
+    content:"";
+    position:absolute; left:6px; top:6px; bottom:6px;
+    width:1px;
+    background: linear-gradient(180deg, var(--gold), rgba(242,206,107,0.15));
+}
+.log-entry{
+    position: relative;
+    padding: 0 0 40px 26px;
+}
+.log-entry:last-child{ padding-bottom: 0; }
+.log-entry::before{
+    content:"";
+    position:absolute;
+    left: -28px; top: 6px;
+    width: 13px; height: 13px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--gold);
+}
+.log-entry.current::before{
+    background: var(--gold);
+    box-shadow: 0 0 0 4px rgba(242,206,107,0.2);
+}
+.log-meta{
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--slate);
+    letter-spacing: 0.02em;
+    margin-bottom: 6px;
+    display:flex;
+    gap: 10px;
     flex-wrap: wrap;
-    background-color: beige;
-    padding: 20px;
-    margin: 20px;
-    width: 220px;
-    border-radius: 20px;
+    align-items:center;
+}
+.log-meta .status{
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--navy);
+    color: var(--gold-soft);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+}
+.log-entry h3{
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--navy-deep);
+}
+.log-entry .org{ color: var(--slate); font-weight: 500; }
+.log-entry ul{
+    margin-top: 12px;
+    padding-left: 18px;
+}
+.log-entry li{ margin-bottom: 8px; font-size: 0.95rem; }
+.log-entry li::marker{ color: var(--gold); }
+
+/* ============================================================
+   PROJECTS
+   ============================================================ */
+.projects-grid{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+}
+.project-card{
+    background: var(--navy-deep);
+    color: #eef1f5;
+    border-radius: 16px;
+    padding: 30px;
+    position:relative;
+    overflow:hidden;
+    border: 1px solid rgba(242,206,107,0.15);
+}
+.project-card::before{
+    content:"";
+    position:absolute; top:-40%; right:-20%;
+    width: 260px; height:260px;
+    background: radial-gradient(circle, rgba(242,206,107,0.16), transparent 70%);
+}
+.project-card h3{
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+}
+.project-card .meta{
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--gold-soft);
+    margin-bottom: 16px;
+    display:block;
+}
+.project-card ul{ padding-left: 18px; position:relative; z-index:1; }
+.project-card li{ margin-bottom: 10px; font-size: 0.93rem; color: #d7dee6; }
+.project-card li::marker{ color: var(--gold); }
+.project-card li strong{ color:#fff; }
+
+/* ============================================================
+   EDUCATION
+   ============================================================ */
+.edu-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+    gap: 18px;
+}
+.edu-card{
+    border: 1px solid rgba(16,24,32,0.1);
+    border-left: 3px solid var(--gold);
+    border-radius: 10px;
+    padding: 20px 22px;
+    background:#fff;
+}
+.edu-card .year{
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--slate);
+}
+.edu-card h3{
+    font-family: var(--font-display);
+    font-size: 1.02rem;
+    margin: 4px 0 4px;
+}
+.edu-card p{ font-size: 0.9rem; color: var(--slate); }
+.edu-card .badge{
+    display:inline-block;
+    margin-top: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    background: var(--gold-soft);
+    color: var(--navy-deep);
+    padding: 3px 8px;
+    border-radius: 4px;
 }
 
-h3{
-    font-size: 1em;
+/* ============================================================
+   CERTIFICATIONS — log lines
+   ============================================================ */
+.cert-groups{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap: 26px;
+}
+.cert-groups h4{
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(16,24,32,0.1);
+}
+.cert-groups ul{ list-style:none; }
+.cert-groups li{
+    font-size: 0.9rem;
+    padding: 7px 0;
+    display:flex;
+    gap: 8px;
+    align-items:flex-start;
+}
+.cert-groups li::before{
+    content:"›";
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-weight: 600;
 }
 
-.card p{
-    margin-top: 5px;
-    font-size: 0.9em;
+/* ============================================================
+   SKILLS — terminal-flag chips
+   ============================================================ */
+.skills-groups{ display:flex; flex-direction:column; gap: 20px; }
+.skill-row{ display:flex; gap: 16px; flex-wrap:wrap; align-items:baseline; }
+.skill-row .label{
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--slate);
+    min-width: 190px;
+}
+.chips{ display:flex; flex-wrap:wrap; gap: 8px; }
+.chip{
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    background: var(--navy-deep);
+    color: var(--gold-soft);
+    padding: 5px 11px;
+    border-radius: 6px;
 }
 
-.card img{
-    margin-bottom: 10px;
+/* ============================================================
+   FOOTER — languages / interests
+   ============================================================ */
+.footer{
+    background: var(--navy-deep);
+    color: #cfd6dd;
+    padding: 60px 0 40px;
+}
+.footer .wrap{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 32px;
+}
+.footer h4{
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold-soft);
+    margin-bottom: 12px;
+}
+.footer p{ font-size: 0.9rem; color: #b7c0c9; margin-bottom: 6px; }
+.footer .bottom{
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: #7c8791;
+    text-align:center;
+}
+
+/* ---------- responsive ---------- */
+@media (min-width: 720px){
+    .projects-grid{ grid-template-columns: 1fr; }
+}
+@media (max-width: 560px){
+    .skill-row .label{ min-width: 100%; }
+    section{ padding: 52px 0; }
 }
